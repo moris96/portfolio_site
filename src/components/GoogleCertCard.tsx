@@ -29,12 +29,12 @@ export default function GoogleCertCard() {
             <div className="w-full bg-neutral-900 rounded-full h-2 mb-2 border border-[#1F1F1F] overflow-hidden">
               <motion.div 
                 initial={{ width: 0 }}
-                animate={{ width: '67%' }}
+                animate={{ width: '78%' }}
                 transition={{ duration: 1, delay: 0.2 }}
                 className="bg-blue-500 h-full rounded-full" 
               />
             </div>
-            <p className="text-sm text-neutral-500 font-medium">67% Completed</p>
+            <p className="text-sm text-neutral-500 font-medium">78% Completed</p>
           </div>
         </div>
         
@@ -101,6 +101,12 @@ export default function GoogleCertCard() {
                     issued: 'Mar 2026',
                     credentialId: 'MZZQA70FTEBL',
                     credentialLink: 'https://www.coursera.org/account/accomplishments/verify/MZZQA70FTEBL'
+                  },
+                  {
+                    title: 'Automate Cybersecurity Tasks with Python',
+                    issued: 'Apr 2026',
+                    credentialId: 'AFT4MVVNAB2Y',
+                    credentialLink: 'https://www.coursera.org/account/accomplishments/verify/AFT4MVVNAB2Y'
                   }
                 ].map((mod, index) => (
                   <motion.div 
