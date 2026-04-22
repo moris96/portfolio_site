@@ -29,18 +29,18 @@ export default function GoogleCertCard() {
             <div className="w-full bg-neutral-900 rounded-full h-2 mb-2 border border-[#1F1F1F] overflow-hidden">
               <motion.div 
                 initial={{ width: 0 }}
-                animate={{ width: '78%' }}
+                animate={{ width: '100%' }}
                 transition={{ duration: 1, delay: 0.2 }}
                 className="bg-blue-500 h-full rounded-full" 
               />
             </div>
-            <p className="text-sm text-neutral-500 font-medium">78% Completed</p>
+            <p className="text-sm text-neutral-500 font-medium">100% Completed</p>
           </div>
         </div>
         
         <div className="flex items-center gap-4 self-start mt-2 md:mt-0">
-          <div className="text-sm font-medium text-neutral-500 bg-neutral-900 px-3 py-1.5 rounded-full whitespace-nowrap border border-[#1F1F1F]">
-            In Progress
+          <div className="text-sm font-medium text-green-500/80 bg-green-500/10 px-3 py-1.5 rounded-full whitespace-nowrap border border-green-500/20">
+            Completed April 2026
           </div>
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -107,6 +107,12 @@ export default function GoogleCertCard() {
                     issued: 'Apr 2026',
                     credentialId: 'AFT4MVVNAB2Y',
                     credentialLink: 'https://www.coursera.org/account/accomplishments/verify/AFT4MVVNAB2Y'
+                  },
+                  {
+                    title: 'Put It to Work: Prepare for Cybersecurity Jobs',
+                    issued: 'Apr 2026',
+                    credentialId: '5DPSE0RM5TYO',
+                    credentialLink: 'https://www.coursera.org/account/accomplishments/verify/5DPSE0RM5TYO'
                   }
                 ].map((mod, index) => (
                   <motion.div 
