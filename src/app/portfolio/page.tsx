@@ -114,9 +114,7 @@ export default function PortfolioPage() {
         <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed mb-3">
           A showcase of security-first projects demonstrating expertise in threat detection, log analysis, and full-stack development.
         </p>
-        <p className="text-sm font-medium text-neutral-500 italic">
-          Fun fact: this website was made using Next.js &amp; Google Antigravity (what the cool kids use to build websites, but I prefer Antigravity over Claude Code because of the cleaner UI)
-        </p>
+
       </motion.div>
 
       {/* ───── HERO PROJECT: MockSOC ───── */}
