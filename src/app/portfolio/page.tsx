@@ -150,57 +150,63 @@ export default function PortfolioPage() {
             </div>
           </div>
 
-          {/* Card Content */}
-          <div className="grid md:grid-cols-2 gap-0">
-            {/* Left: Info */}
-            <div className="p-8 border-r border-border">
-              <div className="flex items-center gap-2 mb-5">
-                <div className="bg-neutral-900 w-10 h-10 rounded-lg flex items-center justify-center border border-neutral-800">
-                  <Shield className="w-5 h-5 text-neutral-300" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-neutral-600 uppercase tracking-widest font-medium">Project</p>
-                  <h2 className="text-lg font-medium text-foreground leading-tight">SentinelSimulation</h2>
-                </div>
-              </div>
-              <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                An interactive Security Operations Center (SOC) dashboard that runs a live Python-based detection engine directly in the browser. Press{" "}
-                <span className="font-mono text-xs bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded text-neutral-300">
-                  Chaos Mode
-                </span>{" "}
-                to simulate a Hydra brute-force attack and watch the engine respond in real-time.
-              </p>
-
-              {/* Tech Tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {TECH_TAGS.map(({ label, icon: Icon }) => (
-                  <span
-                    key={label}
-                    className="flex items-center gap-1.5 px-2.5 py-1 bg-neutral-900 text-xs font-medium text-neutral-400 rounded-full border border-neutral-800"
-                  >
-                    <Icon className="w-3 h-3" />
-                    {label}
-                  </span>
-                ))}
-              </div>
-
-              {/* Key Highlights */}
-              <div className="space-y-2.5">
-                {[
-                  "Sliding-window brute-force detection (≥10 401s/60s)",
-                  "AbuseIPDB real-time IP reputation enrichment",
-                  "SIGMA-aligned custom rule engine (Python)",
-                  "\"Chaos Mode\" — live attack simulation for visitors",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-2 text-xs text-neutral-500">
-                    <span className="mt-0.5 text-neutral-700">▸</span>
-                    <span>{item}</span>
+          {/* Card Content — info strip on top, full-width feed below */}
+          <div className="flex flex-col">
+            {/* Info Row */}
+            <div className="grid md:grid-cols-2 gap-0 border-b border-border">
+              {/* Left: Project meta */}
+              <div className="p-8 border-r border-border">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="bg-neutral-900 w-10 h-10 rounded-lg flex items-center justify-center border border-neutral-800">
+                    <Shield className="w-5 h-5 text-neutral-300" />
                   </div>
-                ))}
+                  <div>
+                    <p className="text-[10px] text-neutral-600 uppercase tracking-widest font-medium">Project</p>
+                    <h2 className="text-lg font-medium text-foreground leading-tight">SentinelSimulation</h2>
+                  </div>
+                </div>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6">
+                  An interactive Security Operations Center (SOC) dashboard that runs a live Python-based detection engine directly in the browser. Press{" "}
+                  <span className="font-mono text-xs bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded text-neutral-300">
+                    Chaos Mode
+                  </span>{" "}
+                  to simulate a Hydra brute-force attack and watch the engine respond in real-time.
+                </p>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {TECH_TAGS.map(({ label, icon: Icon }) => (
+                    <span
+                      key={label}
+                      className="flex items-center gap-1.5 px-2.5 py-1 bg-neutral-900 text-xs font-medium text-neutral-400 rounded-full border border-neutral-800"
+                    >
+                      <Icon className="w-3 h-3" />
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Key Highlights */}
+              <div className="p-8">
+                <p className="text-[10px] text-neutral-600 uppercase tracking-widest font-medium mb-4">Key Highlights</p>
+                <div className="space-y-3">
+                  {[
+                    "Sliding-window brute-force detection (≥10 401s/60s)",
+                    "AbuseIPDB real-time IP reputation enrichment",
+                    "SIGMA-aligned custom rule engine (Python)",
+                    "\"Chaos Mode\" — live attack simulation for visitors",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2 text-xs text-neutral-500">
+                      <span className="mt-0.5 text-neutral-700">▸</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Right: Live Dashboard */}
+            {/* Full-width Live Log Feed */}
             <div className="p-6 relative">
               <MockSOCCard />
             </div>
