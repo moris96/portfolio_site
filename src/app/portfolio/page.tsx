@@ -1,11 +1,12 @@
 "use client";
 
-import { Metadata } from "next";
 import { motion } from "framer-motion";
-import { Shield, Terminal, Zap, Code2, Database, Globe } from "lucide-react";
+import { Terminal, Zap, Code2, Database, Globe, Shield } from "lucide-react";
 import dynamic from "next/dynamic";
+import ProjectWindow from "@/components/ProjectWindow";
 
 const MockSOCCard = dynamic(() => import("@/components/MockSOCCard"), { ssr: false });
+const EmailPhishingAnalyzer = dynamic(() => import("@/components/EmailPhishingAnalyzer"), { ssr: false });
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -16,13 +17,22 @@ const fadeUp = {
   }),
 };
 
-const TECH_TAGS = [
+const SENTINEL_TAGS = [
   { label: "Python 3.11", icon: Code2 },
   { label: "Next.js 16", icon: Globe },
   { label: "Framer Motion", icon: Zap },
   { label: "AbuseIPDB API", icon: Shield },
   { label: "Elasticsearch", icon: Database },
   { label: "SIGMA Rules", icon: Terminal },
+];
+
+const PHISHING_TAGS = [
+  { label: "Digital Forensics", icon: Shield },
+  { label: "Email Analysis", icon: Terminal },
+  { label: "SPF / DKIM / DMARC", icon: Database },
+  { label: "Next.js 16", icon: Globe },
+  { label: "Framer Motion", icon: Zap },
+  { label: "OSINT", icon: Code2 },
 ];
 
 const STAR_ITEMS = [
@@ -114,168 +124,89 @@ export default function PortfolioPage() {
         <p className="text-neutral-400 max-w-2xl text-lg leading-relaxed mb-3">
           A showcase of security-first projects demonstrating expertise in threat detection, log analysis, and full-stack development.
         </p>
-
       </motion.div>
 
-      {/* ───── HERO PROJECT: MockSOC ───── */}
+      {/* ───── PROJECTS ───── */}
       <motion.section
         custom={1}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        aria-label="MockSOC SentinelSimulation project"
+        aria-label="Projects"
         className="mb-20"
       >
-        {/* Label */}
         <div className="flex items-center gap-2 mb-6">
-          <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Featured Project</span>
+          <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Projects</span>
           <div className="flex-1 h-px bg-neutral-900" />
         </div>
 
-        {/* Hero Card */}
-        <div className="bg-card border border-border rounded-xl overflow-hidden shadow-lg shadow-black/60">
-          {/* Card Top Bar */}
-          <div className="flex items-center justify-between px-6 py-3 border-b border-border bg-neutral-950">
-            <div className="flex items-center gap-3">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-neutral-800 border border-neutral-700" />
-                <span className="w-3 h-3 rounded-full bg-neutral-800 border border-neutral-700" />
-                <span className="w-3 h-3 rounded-full bg-neutral-800 border border-neutral-700" />
+        <div className="space-y-6">
+          {/* SentinelSimulation */}
+          <ProjectWindow
+            windowTitle="sentinel-simulation.local"
+            projectName="SentinelSimulation"
+            description={`An interactive Security Operations Center (SOC) dashboard that runs a live Python-based detection engine directly in the browser. Press "Chaos Mode" to simulate a Hydra brute-force attack and watch the engine respond in real-time.`}
+            tags={SENTINEL_TAGS}
+            thumbnail="/thumbnails/sentinel-thumbnail.png"
+            statusLabel="Engine Running"
+          >
+            {/* Live Log Feed */}
+            <MockSOCCard />
+
+            {/* ── Case Study ── */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Case Study</span>
+                <div className="flex-1 h-px bg-neutral-800" />
               </div>
-              <span className="text-xs text-neutral-600 font-mono">sentinel-simulation.local</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] text-neutral-600 font-mono uppercase tracking-wider">Engine Running</span>
-            </div>
-          </div>
-
-          {/* Card Content — info strip on top, full-width feed below */}
-          <div className="flex flex-col">
-            {/* Info Row */}
-            <div className="grid md:grid-cols-2 gap-0 border-b border-border">
-              {/* Left: Project meta */}
-              <div className="p-8 border-r border-border">
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="bg-neutral-900 w-10 h-10 rounded-lg flex items-center justify-center border border-neutral-800">
-                    <Shield className="w-5 h-5 text-neutral-300" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-neutral-600 uppercase tracking-widest font-medium">Project</p>
-                    <h2 className="text-lg font-medium text-foreground leading-tight">SentinelSimulation</h2>
-                  </div>
-                </div>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                  An interactive Security Operations Center (SOC) dashboard that runs a live Python-based detection engine directly in the browser. Press{" "}
-                  <span className="font-mono text-xs bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded text-neutral-300">
-                    Chaos Mode
-                  </span>{" "}
-                  to simulate a Hydra brute-force attack and watch the engine respond in real-time.
-                </p>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {TECH_TAGS.map(({ label, icon: Icon }) => (
-                    <span
-                      key={label}
-                      className="flex items-center gap-1.5 px-2.5 py-1 bg-neutral-900 text-xs font-medium text-neutral-400 rounded-full border border-neutral-800"
-                    >
-                      <Icon className="w-3 h-3" />
-                      {label}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right: Key Highlights */}
-              <div className="p-8">
-                <p className="text-[10px] text-neutral-600 uppercase tracking-widest font-medium mb-4">Key Highlights</p>
-                <div className="space-y-3">
-                  {[
-                    "Sliding-window brute-force detection (≥10 401s/60s)",
-                    "AbuseIPDB real-time IP reputation enrichment",
-                    "SIGMA-aligned custom rule engine (Python)",
-                    "\"Chaos Mode\" — live attack simulation for visitors",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-2 text-xs text-neutral-500">
-                      <span className="mt-0.5 text-neutral-700">▸</span>
-                      <span>{item}</span>
+              <div className="grid md:grid-cols-2 gap-4">
+                {STAR_ITEMS.map((item) => (
+                  <div
+                    key={item.letter}
+                    className="bg-neutral-950 border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-colors"
+                  >
+                    <div className="flex items-baseline gap-3 mb-3">
+                      <span className="text-2xl font-medium text-neutral-700 font-mono">{item.letter}</span>
+                      <span className="text-sm font-medium text-neutral-300 uppercase tracking-wider">{item.label}</span>
                     </div>
-                  ))}
+                    <p className="text-sm text-neutral-400 leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Core Detection Logic ── */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Core Detection Logic</span>
+                <div className="flex-1 h-px bg-neutral-800" />
+              </div>
+              <div className="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden">
+                <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-800">
+                  <div className="flex items-center gap-2">
+                    <Terminal className="w-3.5 h-3.5 text-neutral-600" />
+                    <span className="text-xs text-neutral-600 font-mono">detection_engine.py</span>
+                  </div>
+                  <span className="text-[10px] text-neutral-700 font-mono uppercase tracking-wider">Python 3.11</span>
                 </div>
+                <pre className="p-6 text-xs leading-relaxed text-neutral-400 font-mono overflow-x-auto">
+                  <code>{CODE_SNIPPET}</code>
+                </pre>
               </div>
             </div>
+          </ProjectWindow>
 
-            {/* Full-width Live Log Feed */}
-            <div className="p-6 relative">
-              <MockSOCCard />
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ───── CASE STUDY ───── */}
-      <motion.section
-        custom={2}
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-        aria-label="MockSOC case study"
-        className="mb-20"
-      >
-        <div className="flex items-center gap-2 mb-8">
-          <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Case Study</span>
-          <div className="flex-1 h-px bg-neutral-900" />
-        </div>
-
-        {/* STAR Grid */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {STAR_ITEMS.map((item, i) => (
-            <motion.div
-              key={item.letter}
-              custom={3 + i}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="bg-card border border-border rounded-xl p-6 hover:border-neutral-700 transition-colors"
-            >
-              <div className="flex items-baseline gap-3 mb-3">
-                <span className="text-2xl font-medium text-neutral-700 font-mono">{item.letter}</span>
-                <span className="text-sm font-medium text-neutral-300 uppercase tracking-wider">{item.label}</span>
-              </div>
-              <p className="text-sm text-neutral-400 leading-relaxed">{item.text}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* ───── CODE SNIPPET ───── */}
-      <motion.section
-        custom={7}
-        variants={fadeUp}
-        initial="hidden"
-        animate="visible"
-        aria-label="Detection engine code snippet"
-        className="mb-16"
-      >
-        <div className="flex items-center gap-2 mb-6">
-          <span className="text-[11px] font-medium text-neutral-600 tracking-widest uppercase">Core Detection Logic</span>
-          <div className="flex-1 h-px bg-neutral-900" />
-        </div>
-
-        <div className="bg-card border border-border rounded-xl overflow-hidden">
-          {/* Code Header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-neutral-950">
-            <div className="flex items-center gap-2">
-              <Terminal className="w-3.5 h-3.5 text-neutral-600" />
-              <span className="text-xs text-neutral-600 font-mono">detection_engine.py</span>
-            </div>
-            <span className="text-[10px] text-neutral-700 font-mono uppercase tracking-wider">Python 3.11</span>
-          </div>
-          {/* Code Body */}
-          <pre className="p-6 text-xs leading-relaxed text-neutral-400 font-mono overflow-x-auto">
-            <code>{CODE_SNIPPET}</code>
-          </pre>
+          {/* EmailPhishing: Digital Forensics Analyzer */}
+          <ProjectWindow
+            windowTitle="email-phishing-analyzer.local"
+            projectName="EmailPhishing: Digital Forensics Analyzer"
+            description="An interactive email forensics tool that parses raw email headers to detect phishing attempts. Validates SPF, DKIM, and DMARC authentication, defangs malicious URLs, and generates a step-by-step Incident Response Playbook."
+            tags={PHISHING_TAGS}
+            thumbnail="/thumbnails/phishing-thumbnail.png"
+            statusLabel="Analyzer Ready"
+          >
+            <EmailPhishingAnalyzer />
+          </ProjectWindow>
         </div>
       </motion.section>
 

@@ -111,8 +111,17 @@ export default function MockSOCCard() {
   const burstIpRef = useRef<string>("");
   const burstGeoRef = useRef<string>("");
   const burstCountRef = useRef(0);
+  const isAtBottomRef = useRef(true);
+
+  const handleScroll = useCallback(() => {
+    const el = feedRef.current;
+    if (!el) return;
+    // Check if user is within 15px of the bottom
+    isAtBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 15;
+  }, []);
 
   const scrollBottom = useCallback(() => {
+    if (!isAtBottomRef.current) return;
     requestAnimationFrame(() => {
       const el = feedRef.current;
       if (el) el.scrollTop = el.scrollHeight;
@@ -261,6 +270,7 @@ export default function MockSOCCard() {
       {/* ── Log Feed ── */}
       <div
         ref={feedRef}
+        onScroll={handleScroll}
         className="h-96 overflow-y-auto overflow-x-hidden pr-1 space-y-px"
         style={{ scrollbarWidth: "thin", scrollbarColor: "#2a2a2a transparent" }}
       >
