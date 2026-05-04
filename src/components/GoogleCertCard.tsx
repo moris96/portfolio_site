@@ -17,8 +17,12 @@ export default function GoogleCertCard() {
       
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
         <div className="flex items-start gap-6">
-          <div className="relative w-24 h-24 rounded-2xl bg-white p-3 shrink-0 flex items-center justify-center overflow-hidden shadow-sm">
-            <ShieldCheck className="w-12 h-12 text-blue-600" />
+          <div className="relative w-28 h-28 rounded-2xl bg-white p-2 shrink-0 flex items-center justify-center overflow-hidden shadow-sm">
+            <img
+              src="/googlecyber.png"
+              alt="Google Cybersecurity Certificate Logo"
+              className="max-w-full max-h-full object-contain scale-110"
+            />
           </div>
           <div className="max-w-[280px] md:max-w-[400px]">
             <h3 className="text-xl font-medium text-white mb-2 leading-snug">
@@ -39,8 +43,8 @@ export default function GoogleCertCard() {
         </div>
         
         <div className="flex items-center gap-4 self-start mt-2 md:mt-0">
-          <div className="text-sm font-medium text-green-500/80 bg-green-500/10 px-3 py-1.5 rounded-full whitespace-nowrap border border-green-500/20">
-            Completed April 2026
+          <div className="text-sm font-medium text-neutral-500 bg-neutral-900 px-3 py-1.5 rounded-full whitespace-nowrap border border-[#1F1F1F]">
+            Issued April 2026
           </div>
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -50,6 +54,19 @@ export default function GoogleCertCard() {
             <ChevronDown className="w-4 h-4" />
           </motion.div>
         </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-[#1F1F1F]">
+        <a
+          href="https://www.credly.com/badges/3f2e7dcb-1849-46c2-ada3-bb2a8421f79b/public_url"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-neutral-200 transition-colors w-fit relative z-10"
+        >
+          <span>Show credential</span>
+          <ExternalLink className="w-4 h-4" />
+        </a>
       </div>
 
       <AnimatePresence>
